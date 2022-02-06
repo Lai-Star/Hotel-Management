@@ -4,9 +4,15 @@ import (
 	"fmt"
 	"os"
 
+	"go-hotel/database"
+	"go-hotel/routes"
+
 	"github.com/gin-gonic/gin"
 	"github.com/go-chi/chi/middleware"
+	"go.mongodb.org/mongo-driver/mongo"
 )
+
+var foodCollection *mongo.Collection = database.Opencollection(database.Client, "food")
 
 func main() {
 
@@ -22,7 +28,7 @@ func main() {
 	router.Use(gin.Logger())
 
 	routes.UserRoutes(router)
-	routes.Use(middleware.Authendication())
+	router.Use(middleware.Authentication())
 	routes.FoodRoutes(router)
 	routes.MenuRoutes(router)
 	routes.TableRoutes(router)
