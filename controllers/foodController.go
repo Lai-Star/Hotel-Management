@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"go-hotel/database"
 	"go-hotel/models"
+	"math"
 	"net/http"
 	"time"
 
@@ -49,7 +50,7 @@ func CreateFood() gin.HandlerFunc {
 		var menu models.Menu
 		var food models.Food
 
-		if err = c.BindJSON(&food); err != nil {
+		if err := c.BindJSON(&food); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
@@ -88,7 +89,10 @@ func round(num float64) int {
 
 }
 
-func toFixed(num float64, precision int) float64 {}
+func toFixed(num float64, precision int) float64 {
+	output := math.Pow(10, float64(precision))
+	return float64(round(num*output)) / output
+}
 
 func UpdateFood() gin.HandlerFunc {
 	return func(c *gin.Context) {
