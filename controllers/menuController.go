@@ -1,6 +1,13 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"go-hotel/database"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
+)
+
+var menuCollection *mongo.Collection = database.Opencollection(database.Client, "menu")
 
 func GetMenus() gin.HandlerFunc {
 	return func(c *gin.Context) {
