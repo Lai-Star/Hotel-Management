@@ -35,7 +35,7 @@ func GetFood() gin.HandlerFunc {
 		err := foodCollection.FindOne(ctx, bson.M{"food_id": foodId}).Decode(&food)
 		defer cancel()
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while fetching data"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while fetching food collection data"})
 		}
 
 		c.JSON(http.StatusOK, food)
