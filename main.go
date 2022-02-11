@@ -8,7 +8,6 @@ import (
 	"go-hotel/routes"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-chi/chi/middleware"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -28,7 +27,7 @@ func main() {
 	router.Use(gin.Logger())
 
 	routes.UserRoutes(router)
-	router.Use(middleware.Authentication())
+	// router.Use(middleware.Authentication())
 	routes.FoodRoutes(router)
 	routes.MenuRoutes(router)
 	routes.TableRoutes(router)
