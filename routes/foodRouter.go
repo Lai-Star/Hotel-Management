@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//routes
 func FoodRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.GET("/foods", controllers.GetFoods())
 	incomingRoutes.GET("/foods/:food_id", controllers.GetFood())
