@@ -1,9 +1,13 @@
 package controllers
 
 import (
+	"context"
 	"go-hotel/models"
 	"github.com/gin-gonic/gin"
+	"time"
 )
+
+var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {}
