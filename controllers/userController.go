@@ -7,7 +7,10 @@ func GetUsers() gin.HandlerFunc {
 }
 
 func GetUser() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		userId := c.Param("user_id")
+	}
 }
 
 func Signup() gin.HandlerFunc {
