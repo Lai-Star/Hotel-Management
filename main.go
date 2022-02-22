@@ -23,6 +23,7 @@ func main() {
 		port = "8080"
 	}
 
+	//gin routes
 	router := gin.New()
 	router.Use(gin.Logger())
 
