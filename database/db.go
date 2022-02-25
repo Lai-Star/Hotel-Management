@@ -10,6 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//mongo db conn
 func DBinstace() *mongo.Client {
 	Mongodb := "mongodb://localhost:27017"
 
