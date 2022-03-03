@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//order item routes
 func OrderItemRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.GET("/orderItems", controllers.GetOrderItems())
 	incomingRoutes.GET("/orderItems/:orderItem_id", controllers.GetOrderItem())
