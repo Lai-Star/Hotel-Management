@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//user routes
 func UserRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.GET("/users", controllers.GetUsers())
 	incomingRoutes.GET("/users/:user_id", controllers.GetUser())
