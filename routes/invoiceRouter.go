@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//invoice routes
 func InvoiceRoutes(incomingRoutes *gin.Engine) {
 	incomingRoutes.GET("/invoices", controllers.GetInvoices())
 	incomingRoutes.GET("/invoices/:invoice_id", controllers.GetInvoice())
