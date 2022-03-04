@@ -26,6 +26,7 @@ func GetFoods() gin.HandlerFunc {
 	}
 }
 
+//getfood func to get the food details based on foodId
 func GetFood() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
