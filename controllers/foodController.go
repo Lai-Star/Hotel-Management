@@ -16,6 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+//food collection
 var foodCollection *mongo.Collection = database.Opencollection(database.Client, "food")
 var validate = validator.New()
 
