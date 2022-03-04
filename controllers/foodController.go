@@ -20,6 +20,7 @@ import (
 var foodCollection *mongo.Collection = database.Opencollection(database.Client, "food")
 var validate = validator.New()
 
+//get all the foods in the collection
 func GetFoods() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
