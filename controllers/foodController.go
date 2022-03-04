@@ -99,6 +99,7 @@ func toFixed(num float64, precision int) float64 {
 	return float64(round(num*output)) / output
 }
 
+//update food fucn based on ID
 func UpdateFood() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
