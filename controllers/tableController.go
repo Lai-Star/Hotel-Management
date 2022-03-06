@@ -9,6 +9,7 @@ func GetTables() gin.HandlerFunc {
 	}
 }
 
+//get the single table by Id
 func GetTable() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
