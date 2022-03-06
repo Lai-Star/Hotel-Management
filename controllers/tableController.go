@@ -2,6 +2,7 @@ package controllers
 
 import "github.com/gin-gonic/gin"
 
+//get all the tables
 func GetTables() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
