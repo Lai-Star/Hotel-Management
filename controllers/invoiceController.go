@@ -2,6 +2,7 @@ package controllers
 
 import "github.com/gin-gonic/gin"
 
+//get all the invoices
 func GetInvoices() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
