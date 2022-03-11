@@ -29,6 +29,7 @@ func DBinstace() *mongo.Client {
 	return client
 }
 
+//collection client
 var Client *mongo.Client = DBinstace()
 
 //func for collection
