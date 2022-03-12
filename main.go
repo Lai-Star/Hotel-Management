@@ -11,6 +11,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+//collection intialization
 var foodCollection *mongo.Collection = database.Opencollection(database.Client, "food")
 
 func main() {
