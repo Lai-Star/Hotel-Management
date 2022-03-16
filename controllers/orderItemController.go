@@ -5,6 +5,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+//get all the order items func
 func GetOrderItems() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
