@@ -9,6 +9,7 @@ func GetOrders() gin.HandlerFunc {
 	}
 }
 
+//get the single order based on ID
 func GetOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
