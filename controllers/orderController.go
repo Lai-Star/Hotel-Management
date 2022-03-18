@@ -23,6 +23,7 @@ func CreateOrder() gin.HandlerFunc {
 	}
 }
 
+//update order based on ID
 func UpdateOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
