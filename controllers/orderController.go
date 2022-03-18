@@ -16,6 +16,7 @@ func GetOrder() gin.HandlerFunc {
 	}
 }
 
+//create a new order func
 func CreateOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
