@@ -12,6 +12,7 @@ func GetOrderItems() gin.HandlerFunc {
 	}
 }
 
+//get the single order item by ID
 func GetOrderItemsByOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
