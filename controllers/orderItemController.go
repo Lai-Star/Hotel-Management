@@ -27,6 +27,7 @@ func GetOrderItem() gin.HandlerFunc {
 	}
 }
 
+//update orderitem based on ID
 func UpdateOrderItem() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
