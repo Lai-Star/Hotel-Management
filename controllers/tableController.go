@@ -16,6 +16,7 @@ func GetTable() gin.HandlerFunc {
 	}
 }
 
+//create new table api func
 func CreateTable() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
