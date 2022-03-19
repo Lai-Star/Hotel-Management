@@ -23,6 +23,7 @@ func CreateTable() gin.HandlerFunc {
 	}
 }
 
+//update table data using ID
 func UpdateTable() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
