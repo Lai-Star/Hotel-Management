@@ -165,5 +165,9 @@ func UpdateFood() gin.HandlerFunc {
 			updateObj = append(updateObj, bson.E{"name", food.Price})
 		}
 
+		if food.Food_image != nil {
+			updateObj = append(updateObj, bson.E{"food_image", food.Food_image})
+		}
+
 	}
 }
