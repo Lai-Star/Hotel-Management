@@ -157,5 +157,9 @@ func UpdateFood() gin.HandlerFunc {
 
 		var updateObj primitive.D
 
+		if food.Name != nil {
+			updateObj = append(updateObj, bson.E{"name", food.Name})
+		}
+
 	}
 }
