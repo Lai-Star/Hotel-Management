@@ -16,8 +16,10 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//menu collection
 var menuCollection *mongo.Collection = database.Opencollection(database.Client, "menu")
 
+//get all the menus
 func GetMenus() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -36,6 +38,7 @@ func GetMenus() gin.HandlerFunc {
 	}
 }
 
+//get single menu based in menu id
 func GetMenu() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -54,6 +57,7 @@ func GetMenu() gin.HandlerFunc {
 	}
 }
 
+//create new menu
 func CreateMenu() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
@@ -93,6 +97,7 @@ func inTimeSpan(start, end, check time.Time) bool {
 	return start.After(time.Now()) && end.After(start)
 }
 
+//update existing menu
 func UpdateMenu() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
