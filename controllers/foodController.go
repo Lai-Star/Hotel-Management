@@ -7,6 +7,7 @@ import (
 	"go-hotel/models"
 	"math"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -23,6 +24,20 @@ var validate = validator.New()
 //get all the foods in the collection
 func GetFoods() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		recordPerPage, err := strconv.Atoi(c.Query("recordPerPage"))
+		if err != nil || recordPerPage < 1 {
+			recordPerPage = 10
+		}
+
+		page, err := strconv.Atoi(c.Query("page"))
+		if err != nil || page < 1 {
+			page = 1
+		}
+
+		startIndex := (page - 1) * recordPerPage
+		startIndex, _ = strconv.Atoi(c.Query("startIndex"))
 
 	}
 }
@@ -46,7 +61,7 @@ func GetFood() gin.HandlerFunc {
 	}
 }
 
-//create food func 
+//create food func
 func CreateFood() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
