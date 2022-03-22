@@ -155,5 +155,7 @@ func UpdateFood() gin.HandlerFunc {
 			return
 		}
 
+		var updateObj primitive.D
+
 	}
 }
