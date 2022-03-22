@@ -16,6 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 //food collection
@@ -180,6 +181,28 @@ func UpdateFood() gin.HandlerFunc {
 			}
 			updateObj = append(updateObj, bson.E{"menu", food.Price})
 		}
+		food.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		updateObj = append(updateObj, bson.E{"updated_at", food.Updated_at})
 
+		upsert := true
+		filter := bson.M{"food_id": foodId}
+
+		opt := options.UpdateOptions{
+			Upsert: &upsert,
+		}
+		result, err := foodCollection.UpdateOne(
+			ctx,
+			filter,
+			bson.D{
+				{"$set", updateObj},
+			},
+			&opt,
+		)
+		if err != nil {
+			msg := fmt.Sprint("foot item update failed")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+			return
+		}
+		c.JSON(http.StatusOK, result)
 	}
 }
