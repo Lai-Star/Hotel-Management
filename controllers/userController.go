@@ -2,19 +2,25 @@ package controllers
 
 import (
 	"context"
+	"go-hotel/database"
 	"go-hotel/models"
-	"github.com/gin-gonic/gin"
+	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
-// var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
+var userCollection *mongo.Collection = database.Opencollection(database.Client, "user")
+
 // var validate = validator.New()
 
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
-//get single user 
+//get single user
 func GetUser() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
