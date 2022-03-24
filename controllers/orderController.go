@@ -13,6 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 var orderCollection *mongo.Collection = database.Opencollection(database.Client, "order")
@@ -87,6 +88,29 @@ func UpdateOrder() gin.HandlerFunc {
 
 		order.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		updateObj = append(updateObj, bson.E{"updated_at", order.Updated_at})
+
+		upsert := true
+		filter := bson.M{"order_id": orderId}
+		opt := options.UpdateOptions{
+			Upsert: &upsert,
+		}
+
+		result, err := orderCollection.UpdateOne(
+			ctx,
+			filter,
+			bson.D{
+				{"$st", updateObj},
+			},
+			&opt,
+		)
+		if err != nil {
+			msg := fmt.Sprintf("order item update failed")
+			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+			return
+		}
+
+		defer cancel()
+		c.JSON(http.StatusOK, result)
 
 	}
 }
