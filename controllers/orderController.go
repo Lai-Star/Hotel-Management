@@ -65,6 +65,11 @@ func UpdateOrder() gin.HandlerFunc {
 		var order models.Order
 
 		var updateObj primitive.D
+		orderId := c.Param("order_id")
+		if err := c.BindJSON(&order); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 
 	}
 }
