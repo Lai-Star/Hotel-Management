@@ -96,6 +96,7 @@ func CreateOrder() gin.HandlerFunc {
 		}
 
 		defer cancel()
+		c.JSON(http.StatusOK, result)
 
 	}
 }
