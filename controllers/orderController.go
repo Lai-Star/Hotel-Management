@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -59,6 +60,11 @@ func CreateOrder() gin.HandlerFunc {
 //update order based on ID
 func UpdateOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
+
+		var table models.Table
+		var order models.Order
+
+		var updateObj primitive.D
 
 	}
 }
