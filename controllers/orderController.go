@@ -155,3 +155,5 @@ func UpdateOrder() gin.HandlerFunc {
 
 	}
 }
+
+func OrderItemOrderCreator(order models.Order) string {}
