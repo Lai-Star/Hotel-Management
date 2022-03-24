@@ -80,7 +80,10 @@ func CreateOrder() gin.HandlerFunc {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 				return
 			}
+
 		}
+		order.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		order.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
 	}
 }
