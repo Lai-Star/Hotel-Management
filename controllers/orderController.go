@@ -65,6 +65,13 @@ func CreateOrder() gin.HandlerFunc {
 			return
 		}
 
+		validationErr := validate.Struct(order)
+
+		if validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+			return
+		}
+
 	}
 }
 
