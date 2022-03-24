@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"go-hotel/database"
 	"go-hotel/models"
 	"log"
@@ -15,6 +16,7 @@ import (
 )
 
 var orderCollection *mongo.Collection = database.Opencollection(database.Client, "order")
+var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
 //get all the order func
 func GetOrders() gin.HandlerFunc {
@@ -65,10 +67,22 @@ func UpdateOrder() gin.HandlerFunc {
 		var order models.Order
 
 		var updateObj primitive.D
+
 		orderId := c.Param("order_id")
 		if err := c.BindJSON(&order); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
+		}
+
+		if order.Table_id != nil {
+			err := menuCollection.FindOne(ctx, bson.M{"tabled_id": order.Table_id}).Decode(&table)
+			defer cancel()
+			if err != nil {
+				msg := fmt.Sprintf("message:Menu was not found")
+				c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+				return
+			}
+			updateObj = append(updateObj, bson.E{"menu", order.Table_id})
 		}
 
 	}
