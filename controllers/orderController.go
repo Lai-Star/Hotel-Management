@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"go-hotel/database"
+	"go-hotel/models"
 	"log"
 	"net/http"
 	"time"
@@ -35,6 +36,9 @@ func GetOrders() gin.HandlerFunc {
 //get the single order based on ID
 func GetOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		orderId := c.Param("order_id")
+		var order models.Order
 
 	}
 }
