@@ -157,6 +157,7 @@ func UpdateOrder() gin.HandlerFunc {
 	}
 }
 
+//dep func
 func OrderItemOrderCreator(order models.Order) string {
 
 	order.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
