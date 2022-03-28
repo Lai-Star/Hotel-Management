@@ -21,7 +21,6 @@ import (
 
 //food collection
 var foodCollection *mongo.Collection = database.Opencollection(database.Client, "food")
-//validation
 var validate = validator.New()
 
 //get all the foods in the collection

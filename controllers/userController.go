@@ -36,6 +36,7 @@ func GetUser() gin.HandlerFunc {
 	}
 }
 
+//signup api
 func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
