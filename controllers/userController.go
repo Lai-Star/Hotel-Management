@@ -46,6 +46,7 @@ func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {}
 }
 
+//helper func
 func HashPassword(password string) string {
 
 }

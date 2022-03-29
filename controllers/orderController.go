@@ -16,6 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+//order collection
 var orderCollection *mongo.Collection = database.Opencollection(database.Client, "order")
 var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
@@ -156,6 +157,7 @@ func UpdateOrder() gin.HandlerFunc {
 	}
 }
 
+//dep func
 func OrderItemOrderCreator(order models.Order) string {
 
 	order.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
