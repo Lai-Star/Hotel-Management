@@ -54,5 +54,5 @@ func HashPassword(password string) string {
 //verify password func
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
 
-	// return true, providedPassword
+	return true, providedPassword
 }
