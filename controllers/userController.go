@@ -48,10 +48,11 @@ func Login() gin.HandlerFunc {
 
 //helper func
 func HashPassword(password string) string {
-
+	return password
 }
 
 //verify password func
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
 
+	// return true, providedPassword
 }
