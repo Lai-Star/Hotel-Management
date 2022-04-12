@@ -6,6 +6,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+//invoice model collection struct
 type invoice struct {
 	ID               primitive.ObjectID `bson:"_id"`
 	Invoice_id       string             `json:"invoice_id"`
