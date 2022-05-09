@@ -16,6 +16,7 @@ func GetInvoice() gin.HandlerFunc {
 	}
 }
 
+// create new invoice func
 func CreateInvoice() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
