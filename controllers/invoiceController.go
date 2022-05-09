@@ -23,6 +23,7 @@ func CreateInvoice() gin.HandlerFunc {
 	}
 }
 
+// update invoice func
 func UpdateInvoice() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
