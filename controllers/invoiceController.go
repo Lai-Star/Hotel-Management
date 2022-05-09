@@ -9,6 +9,7 @@ func GetInvoices() gin.HandlerFunc {
 	}
 }
 
+//get invoice function based on ID
 func GetInvoice() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
