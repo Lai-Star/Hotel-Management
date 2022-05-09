@@ -12,6 +12,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
+// user collection
 var userCollection *mongo.Collection = database.Opencollection(database.Client, "user")
 
 // var validate = validator.New()
