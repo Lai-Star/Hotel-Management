@@ -1,2 +1,3 @@
 # go-hotel
-Golang Restaurant management Backend system.
+
+Golang Restaurant management Backend system
