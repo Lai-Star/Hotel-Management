@@ -12,7 +12,7 @@ import (
 
 //mongo db conn
 func DBinstace() *mongo.Client {
-	
+
 	Mongodb := "mongodb://localhost:27017"
 	client, err := mongo.NewClient(options.Client().ApplyURI(Mongodb))
 	if err != nil {
