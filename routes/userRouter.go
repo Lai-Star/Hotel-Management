@@ -2,6 +2,7 @@ package routes
 
 import (
 	"go-hotel/controllers"
+
 	"github.com/gin-gonic/gin"
 )
 
