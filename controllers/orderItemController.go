@@ -1,9 +1,14 @@
 package controllers
 
 import (
+	"go-hotel/database"
+
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo"
 )
+
+var orderItemCollection *mongo.Collection = database.Opencollection(database.Client, "orderItem")
 
 //get all the order items func
 func GetOrderItems() gin.HandlerFunc {
