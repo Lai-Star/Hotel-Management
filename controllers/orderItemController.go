@@ -21,7 +21,6 @@ func GetOrderItems() gin.HandlerFunc {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		result, err := orderItemCollection.Find(context.TODO(), bson.M{})
-
 		defer cancel()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing ordered items"})
