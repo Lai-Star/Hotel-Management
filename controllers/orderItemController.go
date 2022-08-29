@@ -45,6 +45,14 @@ func GetOrderItems() gin.HandlerFunc {
 //get the single order item by ID
 func GetOrderItemsByOrder() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		orderId := c.Param("order_id")
+		allorderItems, err := ItemByOrder(orderId)
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing order items by order ID"})
+			return
+		}
+		c.JSON(http.StatusOK, allorderItems)
 
 	}
 }
