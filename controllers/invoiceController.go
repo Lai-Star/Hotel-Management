@@ -122,7 +122,7 @@ func CreateInvoice() gin.HandlerFunc {
 
 		result, insertErr := invoiceCollection.InsertOne(ctx, invoice)
 		if insertErr != nil {
-			msg := fmt.Sprintf("invoice item was not created")
+			msg := fmt.Sprintf("invoice item was not created..")
 			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
 			return
 		}
