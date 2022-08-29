@@ -1,6 +1,13 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"go-hotel/database"
+
+	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
+)
+
+var tableCollection *mongo.Collection = database.Opencollection(database.Client, "table")
 
 //get all the tables
 func GetTables() gin.HandlerFunc {
