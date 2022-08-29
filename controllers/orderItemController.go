@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"go-hotel/database"
+	"go-hotel/models"
 	"log"
 	"net/http"
 	"time"
@@ -12,6 +13,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
+
+type OrderItemPack struct {
+	Table_id    *string
+	Order_items []models.OrderItem
+}
 
 var orderItemCollection *mongo.Collection = database.Opencollection(database.Client, "orderItem")
 
