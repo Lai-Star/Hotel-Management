@@ -3,7 +3,10 @@ package controllers
 import (
 	"time"
 
+	"go-hotel/database"
+
 	"github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type InvoiceViewFormat struct {
@@ -16,6 +19,8 @@ type InvoiceViewFormat struct {
 	Payment_due_date time.Time
 	Order_details    interface{}
 }
+
+var invoiceCollection *mongo.Collection = database.Opencollection(database.Client, "invoice")
 
 //get all the invoices
 func GetInvoices() gin.HandlerFunc {
