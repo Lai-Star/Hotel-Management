@@ -141,7 +141,7 @@ func UpdateOrder() gin.HandlerFunc {
 			ctx,
 			filter,
 			bson.D{
-				{"$st", updateObj},
+				{"$set", updateObj},
 			},
 			&opt,
 		)
