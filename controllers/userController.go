@@ -4,7 +4,9 @@ import (
 	"context"
 	"go-hotel/database"
 	"go-hotel/models"
+	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +20,42 @@ var userCollection *mongo.Collection = database.Opencollection(database.Client, 
 // var validate = validator.New()
 
 func GetUsers() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+
+		recordperpage, err := strconv.Atoi(c.Query("recordPerPage"))
+		if err != nil || recordperpage < 1 {
+			recordperpage = 10
+		}
+
+		page, err1 := strconv.Atoi(c.Query("page"))
+		if err1 != nil || page < 1 {
+			page = 10
+		}
+
+		startindex := (page - 1) * recordperpage
+		startindex, err = strconv.Atoi(c.Query("startIndex"))
+
+		matchstage := bson.D{{"$match", bson.D{{}}}}
+		projectstage := bson.D{
+			{"$project", bson.D{
+				{"_id", 0},
+				{"total_count", 1},
+				{"user_details", bson.D{{"$slice", []interface{}{"$data", startindex, recordperpage}}}},
+			}}}
+
+		result, err := userCollection.Aggregate(ctx, mongo.Pipeline{matchstage, projectstage})
+		defer cancel()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing user items"})
+		}
+		var allusers []bson.M
+		if err = result.All(ctx, &allusers); err != nil {
+			log.Fatal(err)
+		}
+
+		c.JSON(http.StatusOK, result)
+	}
 }
 
 //get single user
