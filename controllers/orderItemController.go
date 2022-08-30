@@ -58,7 +58,9 @@ func GetOrderItemsByOrder() gin.HandlerFunc {
 	}
 }
 
-func ItemByOrder(id string) (orderItems []primitive.M, err error) {}
+func ItemByOrder(id string) (orderItems []primitive.M, err error) {
+	return
+}
 
 //get order item
 func GetOrderItem() gin.HandlerFunc {
