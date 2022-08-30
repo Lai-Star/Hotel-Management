@@ -76,12 +76,43 @@ func GetUser() gin.HandlerFunc {
 
 //signup api
 func Signup() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+	return func(c *gin.Context) {
+		//convert the JSON data coming from postman to something that golang understands
+
+		//validate the data based on user struct
+
+		//you'll check if the email has already been used by another user
+
+		//hash password
+
+		//you'll also check if the phone no. has already been used by another user
+
+		//create some extra details for the user object - created_at, updated_at, ID
+
+		//generate token and refersh token (generate all tokens function from helper)
+
+		//if all ok, then you insert this new user into the user collection
+
+		//return status OK and send the result back
+	}
 }
 
 //login api
 func Login() gin.HandlerFunc {
-	return func(c *gin.Context) {}
+	return func(c *gin.Context) {
+
+		//convert the login data from postman which is in JSON to golang readable format
+
+		//find a user with that email and see if that user even exists
+
+		//then you will verify the password
+
+		//if all goes well, then you'll generate tokens
+
+		//update tokens - token and refersh token
+
+		//return statusOK
+	}
 }
 
 //helper func
