@@ -206,5 +206,14 @@ func HashPassword(password string) string {
 //verify password func
 func VerifyPassword(userPassword string, providedPassword string) (bool, string) {
 
-	return true, providedPassword
+	err := bcrypt.CompareHashAndPassword([]byte(providedPassword), []byte(userPassword))
+	check := true
+	msg := ""
+
+	if err != nil {
+		msg = fmt.Sprintf("login or password is incorrect")
+		check = false
+	}
+
+	return check, msg
 }
