@@ -59,7 +59,62 @@ func GetOrderItemsByOrder() gin.HandlerFunc {
 }
 
 func ItemByOrder(id string) (orderItems []primitive.M, err error) {
-	return
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+
+	matchstage := bson.D{{"$match", bson.D{{"order_id", id}}}}
+	lookupstage := bson.D{{"$lookup", bson.D{{"from", "food"}, {"localField", "food_id"}, {"foreignField", "food_id"}, {"as", "food"}}}}
+	unwindstage := bson.D{{"$unwind", bson.D{{"path", "$food"}, {"preserveNullAndEmptyArrays", true}}}}
+
+	lookuporderstage := bson.D{{"$lookup", bson.D{{"from", "order"}, {"localField", "order_id"}, {"foreignField", "order_id"}, {"as", "order"}}}}
+	unwindorderstage := bson.D{{"$unwind", bson.D{{"path", "$order"}, {"preserveNullAndEmptyArrays", true}}}}
+
+	lookuptablestage := bson.D{{"$lookup", bson.D{{"from", "table"}, {"localField", "order.table_id"}, {"foreignField", "order.table_id"}, {"as", "table"}}}}
+	unwindtablestage := bson.D{{"$unwind", bson.D{{"path", "$table"}, {"preserveNullAndEmptyArrays", true}}}}
+
+	projectstage := bson.D{
+		{"$project", bson.D{
+			{"id", 0},
+			{"amount", "$food.name"},
+			{"food_image", "$food.food_image"},
+			{"table_number", "$table.table_number"},
+			{"table_id", "$table.table_id"},
+			{"order_id", "$order.order_id"},
+			{"price", "$food.price"},
+			{"quantity", 1},
+		}}}
+
+	groupstage := bson.D{{"$group", bson.D{{"_id", bson.D{{"order_id", "$order_id"}, {"table_id", "$table_id"}, {"table_number", "$table_number"}}}, {"payment_due", bson.D{{"$sum", "$amount"}}}, {"total_count", bson.D{{"$sum", 1}}}, {"order_items", bson.D{{"$push", "$$ROOT"}}}}}}
+
+	projectstagetwo := bson.D{
+		{"$project", bson.D{
+			{"id", 0},
+			{"payment_due", 1},
+			{"total_count", 1},
+			{"total_number", "$_id.table_number"},
+			{"order_items", 1},
+		}}}
+
+	result, err := orderItemCollection.Aggregate(ctx, mongo.Pipeline{
+		matchstage,
+		lookupstage,
+		unwindstage,
+		lookuporderstage,
+		unwindorderstage,
+		lookuptablestage,
+		unwindtablestage,
+		projectstage,
+		groupstage,
+		projectstagetwo})
+
+	if err != nil {
+		panic(err)
+	}
+	if err = result.All(ctx, &orderItems); err != nil {
+		panic(err)
+	}
+	defer cancel()
+
+	return orderItems, err
 }
 
 //get order item
