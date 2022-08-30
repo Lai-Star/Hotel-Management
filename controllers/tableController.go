@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"go-hotel/database"
+	"go-hotel/models"
 	"log"
 	"net/http"
 	"time"
@@ -35,6 +36,15 @@ func GetTables() gin.HandlerFunc {
 //get the single table by Id
 func GetTable() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+		tableId := c.Param("table_id")
+		var table models.Table
+		err := orderCollection.FindOne(ctx, bson.M{"order_id": tableId}).Decode(&table)
+		defer cancel()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while fetching the tables"})
+		}
+		c.JSON(http.StatusOK, table)
 
 	}
 }
