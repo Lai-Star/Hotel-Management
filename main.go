@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"go-hotel/database"
+	"go-hotel/middleware"
 	"go-hotel/routes"
 
 	"github.com/gin-gonic/gin"
