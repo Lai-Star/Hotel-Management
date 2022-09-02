@@ -23,6 +23,7 @@ var userCollection *mongo.Collection = database.Opencollection(database.Client, 
 
 // var validate = validator.New()
 
+//get the all users
 func GetUsers() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
