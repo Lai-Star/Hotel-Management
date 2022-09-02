@@ -21,7 +21,7 @@ import (
 // user collection
 var userCollection *mongo.Collection = database.Opencollection(database.Client, "user")
 
-// var validate = validator.New()
+
 
 //get the all users
 func GetUsers() gin.HandlerFunc {
