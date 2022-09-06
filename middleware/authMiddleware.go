@@ -8,8 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Authentication() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func Authentication(c *gin.Context) {
+	
 		clientToken := c.Request.Header.Get("token")
 		if clientToken == "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("No Authorization header provided")})
@@ -31,5 +31,5 @@ func Authentication() gin.HandlerFunc {
 
 		c.Next()
 
-	}
+	
 }
