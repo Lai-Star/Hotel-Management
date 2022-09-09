@@ -51,8 +51,8 @@ func GetTable() gin.HandlerFunc {
 }
 
 //create new table api func
-func CreateTable() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateTable(c *gin.Context) {
+	
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var table models.Table
 		if err := c.BindJSON(&table); err != nil {
@@ -82,7 +82,7 @@ func CreateTable() gin.HandlerFunc {
 		defer cancel()
 		c.JSON(http.StatusOK, result)
 
-	}
+	
 }
 
 //update table data using ID
