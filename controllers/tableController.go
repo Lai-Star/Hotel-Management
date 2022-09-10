@@ -52,37 +52,36 @@ func GetTable() gin.HandlerFunc {
 
 //create new table api func
 func CreateTable(c *gin.Context) {
-	
-		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-		var table models.Table
-		if err := c.BindJSON(&table); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
 
-		validationErr := validate.Struct(table)
-		if validationErr != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
-			return
-		}
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	var table models.Table
+	if err := c.BindJSON(&table); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-		table.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
-		table.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+	validationErr := validate.Struct(table)
+	if validationErr != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+		return
+	}
 
-		table.ID = primitive.NewObjectID()
-		table.Table_id = table.ID.Hex()
+	table.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+	table.Updated_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
-		result, inserterr := tableCollection.InsertOne(ctx, table)
-		if inserterr != nil {
-			msg := fmt.Sprintf("Table item was not created")
-			c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
-			return
-		}
+	table.ID = primitive.NewObjectID()
+	table.Table_id = table.ID.Hex()
 
-		defer cancel()
-		c.JSON(http.StatusOK, result)
+	result, inserterr := tableCollection.InsertOne(ctx, table)
+	if inserterr != nil {
+		msg := fmt.Sprintf("Table item was not created")
+		c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+		return
+	}
 
-	
+	defer cancel()
+	c.JSON(http.StatusOK, result)
+
 }
 
 //update table data using ID
