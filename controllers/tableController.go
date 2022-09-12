@@ -35,7 +35,7 @@ func GetTables(c *gin.Context) {
 }
 
 //get the single table by Id
-func GetTable() gin.HandlerFunc {
+func GetTable(c *gin.Context) {
 	return func(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		tableId := c.Param("table_id")
@@ -47,7 +47,7 @@ func GetTable() gin.HandlerFunc {
 		}
 		c.JSON(http.StatusOK, table)
 
-	}
+	
 }
 
 //create new table api func
