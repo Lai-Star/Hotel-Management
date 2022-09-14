@@ -26,8 +26,7 @@ var foodCollection *mongo.Collection = database.Opencollection(database.Client, 
 var validate = validator.New()
 
 //get all the foods in the collection
-func GetFoods() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetFoods(c *gin.Context) {
 
 		var Foods []bson.M
 
@@ -67,7 +66,7 @@ func GetFoods() gin.HandlerFunc {
 			log.Fatal(err)
 		}
 		c.JSON(http.StatusOK, Foods[0])
-	}
+	
 }
 
 //getfood func to get the food details based on foodId
