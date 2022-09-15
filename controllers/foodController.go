@@ -70,8 +70,7 @@ func GetFoods(c *gin.Context) {
 }
 
 //getfood func to get the food details based on foodId
-func GetFood() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetFood(c *gin.Context) {
 
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		foodId := c.Param("food_id")
@@ -85,7 +84,7 @@ func GetFood() gin.HandlerFunc {
 
 		c.JSON(http.StatusOK, food)
 
-	}
+	
 }
 
 //create food func
