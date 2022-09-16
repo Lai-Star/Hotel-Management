@@ -88,8 +88,7 @@ func GetFood(c *gin.Context) {
 }
 
 //create food func
-func CreateFood() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateFood(c *gin.Context) {
 
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		var menu models.Menu
@@ -127,7 +126,7 @@ func CreateFood() gin.HandlerFunc {
 		}
 		defer cancel()
 		c.JSON(http.StatusOK, result)
-	}
+	
 }
 
 //roundof func
