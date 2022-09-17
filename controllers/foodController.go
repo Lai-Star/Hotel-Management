@@ -140,8 +140,7 @@ func toFixed(num float64, precision int) float64 {
 }
 
 //update food fucn based on ID
-func UpdateFood() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func UpdateFood(c *gin.Context) {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var menu models.Menu
