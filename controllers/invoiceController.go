@@ -31,8 +31,7 @@ type InvoiceViewFormat struct {
 var invoiceCollection *mongo.Collection = database.Opencollection(database.Client, "invoice")
 
 //get all the invoices
-func GetInvoices() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetInvoices(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		result, err := invoiceCollection.Find(context.TODO(), bson.M{})
 		defer cancel()
@@ -46,7 +45,7 @@ func GetInvoices() gin.HandlerFunc {
 		}
 		c.JSON(http.StatusOK, allInvoices)
 
-	}
+	
 }
 
 //get invoice function based on ID
