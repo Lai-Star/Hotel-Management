@@ -49,8 +49,7 @@ func GetInvoices(c *gin.Context) {
 }
 
 //get invoice function based on ID
-func GetInvoice() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetInvoice(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		invoiceId := c.Param("invoice_id")
 		var invoice models.Invoice
@@ -79,7 +78,7 @@ func GetInvoice() gin.HandlerFunc {
 
 		c.JSON(http.StatusOK, invoiceView)
 
-	}
+	
 }
 
 // create new invoice func
