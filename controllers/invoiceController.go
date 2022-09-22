@@ -82,8 +82,7 @@ func GetInvoice(c *gin.Context) {
 }
 
 // create new invoice func
-func CreateInvoice() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateInvoice(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var invoice models.Invoice
 
@@ -129,7 +128,7 @@ func CreateInvoice() gin.HandlerFunc {
 
 		c.JSON(http.StatusOK, result)
 
-	}
+	
 }
 
 // update invoice func
