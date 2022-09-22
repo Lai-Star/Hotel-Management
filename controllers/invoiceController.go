@@ -132,8 +132,7 @@ func CreateInvoice(c *gin.Context) {
 }
 
 // update invoice func
-func UpdateInvoice() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func UpdateInvoice(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var invoice models.Invoice
 		invoiceId := c.Param("invoice_id")
@@ -180,5 +179,5 @@ func UpdateInvoice() gin.HandlerFunc {
 
 		defer cancel()
 		c.JSON(http.StatusOK, result)
-	}
+	
 }
