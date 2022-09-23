@@ -38,8 +38,7 @@ func GetMenus(c *gin.Context) {
 }
 
 //get single menu based in menu id
-func GetMenu() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetMenu(c *gin.Context) {
 
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		menuId := c.Param("menu_id")
@@ -53,7 +52,7 @@ func GetMenu() gin.HandlerFunc {
 
 		c.JSON(http.StatusOK, menu)
 
-	}
+	
 }
 
 //create new menu
