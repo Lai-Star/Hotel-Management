@@ -20,8 +20,7 @@ import (
 var menuCollection *mongo.Collection = database.Opencollection(database.Client, "menu")
 
 //get all the menus
-func GetMenus() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetMenus(c *gin.Context) {
 
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		result, err := menuCollection.Find(context.TODO(), bson.M{})
@@ -35,7 +34,7 @@ func GetMenus() gin.HandlerFunc {
 			log.Fatal(err)
 		}
 		c.JSON(http.StatusOK, menu)
-	}
+	
 }
 
 //get single menu based in menu id
