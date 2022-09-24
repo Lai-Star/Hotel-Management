@@ -97,8 +97,7 @@ func inTimeSpan(start, end, check time.Time) bool {
 }
 
 //update existing menu
-func UpdateMenu() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func UpdateMenu(c *gin.Context) {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var menu models.Menu
@@ -153,5 +152,5 @@ func UpdateMenu() gin.HandlerFunc {
 			c.JSON(http.StatusOK, result)
 		}
 
-	}
+	
 }
