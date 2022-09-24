@@ -56,8 +56,7 @@ func GetMenu(c *gin.Context) {
 }
 
 //create new menu
-func CreateMenu() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateMenu(c *gin.Context) {
 
 		ctx, cancel := context.WithTimeout(context.Background(), 100*time.Second)
 		var menu models.Menu
@@ -88,7 +87,7 @@ func CreateMenu() gin.HandlerFunc {
 		c.JSON(http.StatusOK, result)
 		defer cancel()
 
-	}
+	
 }
 
 //dep func
