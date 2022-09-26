@@ -21,8 +21,7 @@ var orderCollection *mongo.Collection = database.Opencollection(database.Client,
 var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
 //get all the order func
-func GetOrders() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetOrders(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		result, err := orderCollection.Find(context.TODO(), bson.M{})
 		defer cancel()
@@ -35,7 +34,7 @@ func GetOrders() gin.HandlerFunc {
 		}
 		c.JSON(http.StatusOK, allOrders)
 
-	}
+	
 }
 
 //get the single order based on ID
