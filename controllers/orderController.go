@@ -53,8 +53,7 @@ func GetOrder(c *gin.Context) {
 }
 
 //create a new order func
-func CreateOrder() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateOrder(c *gin.Context) {
 
 		var table models.Table
 		var order models.Order
