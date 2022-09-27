@@ -96,7 +96,7 @@ func CreateOrder(c *gin.Context) {
 		defer cancel()
 		c.JSON(http.StatusOK, result)
 
-	}
+	
 }
 
 //update order based on ID
