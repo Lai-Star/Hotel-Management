@@ -23,8 +23,7 @@ type OrderItemPack struct {
 var orderItemCollection *mongo.Collection = database.Opencollection(database.Client, "orderItem")
 
 //get all the order items func
-func GetOrderItems() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetOrderItems(c *gin.Context) {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		result, err := orderItemCollection.Find(context.TODO(), bson.M{})
