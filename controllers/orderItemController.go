@@ -42,8 +42,7 @@ func GetOrderItems(c *gin.Context) {
 }
 
 //get the single order item by ID
-func GetOrderItemsByOrder() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetOrderItemsByOrder(c *gin.Context) {
 		orderId := c.Param("order_id")
 		allorderItems, err := ItemByOrder(orderId)
 
