@@ -129,8 +129,8 @@ func GetOrderItem(c *gin.Context) {
 }
 
 //update orderitem based on ID
-func UpdateOrderItem() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func UpdateOrderItem(c *gin.Context) {
+	
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var orderitem models.OrderItem
 		orderitemId := c.Param("order_item_id")
