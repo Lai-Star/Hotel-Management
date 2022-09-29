@@ -25,21 +25,20 @@ var orderItemCollection *mongo.Collection = database.Opencollection(database.Cli
 //get all the order items func
 func GetOrderItems(c *gin.Context) {
 
-		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-		result, err := orderItemCollection.Find(context.TODO(), bson.M{})
-		defer cancel()
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing ordered items"})
-			return
-		}
-		var allOrderItems []bson.M
-		if err = result.All(ctx, &allOrderItems); err != nil {
-			log.Fatal(err)
-			return
-		}
-		c.JSON(http.StatusOK, allOrderItems)
-
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	result, err := orderItemCollection.Find(context.TODO(), bson.M{})
+	defer cancel()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing ordered items"})
+		return
 	}
+	var allOrderItems []bson.M
+	if err = result.All(ctx, &allOrderItems); err != nil {
+		log.Fatal(err)
+		return
+	}
+	c.JSON(http.StatusOK, allOrderItems)
+
 }
 
 //get the single order item by ID
