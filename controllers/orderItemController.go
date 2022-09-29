@@ -115,18 +115,17 @@ func ItemByOrder(id string) (orderItems []primitive.M, err error) {
 
 //get order item
 func GetOrderItem(c *gin.Context) {
-		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-		var orderitem models.OrderItem
-		orderitemId := c.Param("order_item_id")
-		err := orderItemCollection.FindOne(ctx, bson.M{"orderItem_id": orderitemId}).Decode(&orderitem)
-		defer cancel()
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing ordered item"})
-			return
-		}
-		c.JSON(http.StatusOK, orderitem)
-
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	var orderitem models.OrderItem
+	orderitemId := c.Param("order_item_id")
+	err := orderItemCollection.FindOne(ctx, bson.M{"orderItem_id": orderitemId}).Decode(&orderitem)
+	defer cancel()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing ordered item"})
+		return
 	}
+	c.JSON(http.StatusOK, orderitem)
+
 }
 
 //update orderitem based on ID
