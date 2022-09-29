@@ -97,8 +97,7 @@ func CreateOrder(c *gin.Context) {
 }
 
 //update order based on ID
-func UpdateOrder() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func UpdateOrder(c *gin.Context) {
 
 		var table models.Table
 		var order models.Order
