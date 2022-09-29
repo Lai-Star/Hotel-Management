@@ -165,8 +165,7 @@ func UpdateOrderItem(c *gin.Context) {
 }
 
 //create order item
-func CreateOrderItem() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func CreateOrderItem(c *gin.Context) {
 
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 
