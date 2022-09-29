@@ -114,8 +114,7 @@ func ItemByOrder(id string) (orderItems []primitive.M, err error) {
 }
 
 //get order item
-func GetOrderItem() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetOrderItem(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var orderitem models.OrderItem
 		orderitemId := c.Param("order_item_id")
