@@ -62,17 +62,17 @@ func GetUsers(c *gin.Context) {
 
 //get single user
 func GetUser(c *gin.Context) {
-		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
-		userId := c.Param("user_id")
-		var user models.User
+	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
+	userId := c.Param("user_id")
+	var user models.User
 
-		err := userCollection.FindOne(ctx, bson.M{"user_id": userId}).Decode(&user)
-		defer cancel()
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing user items"})
-		}
-		c.JSON(http.StatusOK, user)
+	err := userCollection.FindOne(ctx, bson.M{"user_id": userId}).Decode(&user)
+	defer cancel()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while listing user items"})
 	}
+	c.JSON(http.StatusOK, user)
+
 }
 
 //signup api
