@@ -61,8 +61,7 @@ func GetUsers(c *gin.Context) {
 }
 
 //get single user
-func GetUser() gin.HandlerFunc {
-	return func(c *gin.Context) {
+func GetUser(c *gin.Context) {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		userId := c.Param("user_id")
 		var user models.User
